@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  # 
+  
+  # Define routes for report index
+  resources :reports, only: [:index, :show, :new, :create]
 end
