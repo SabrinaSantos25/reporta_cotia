@@ -1,3 +1,4 @@
 class Address < ApplicationRecord
-  belongs_to :report
+
+  validates :cep, :street, :neighbhood, :city, :number, presence: true
 end
