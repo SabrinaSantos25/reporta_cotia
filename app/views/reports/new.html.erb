@@ -1,41 +1,43 @@
-<h1 class="text-2xl font-bold mb-4">Novo Report</h1>
+<div class="container mx-auto">
+  <h1 class="text-2xl font-bold mb-5 text-center">Novo Report</h1>
 
-<div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
-  <%= form_with(model: @report, local: true) do |form| %>
-    <% if @report.errors.any? %>
-      <div id="error_explanation" class="mb-4">
-        <h2 class="text-red-600 font-semibold"><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
-        <ul class="list-disc list-inside text-red-600">
-          <% @report.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+  <div class="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
+    <%= form_with(model: @report, local: true) do |form| %>
+      <% if @report.errors.any? %>
+        <div id="error_explanation" class="mb-4">
+          <h2 class="text-red-600 font-semibold"><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+          <ul class="list-disc list-inside text-red-600">
+            <% @report.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-4">
+        <%= form.label "Titulo", class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label "Descrição", class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_area :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :category_id, "Categoria", class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.collection_select :category_id, Category.all, :id, :category, {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :address_id, "Endereço", class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.collection_select :address_id, Address.all, :id, :street, {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <%= form.submit "Criar Report", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" %>
+        <%= link_to "Voltar", reports_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-4 rounded-full focus:outline-none focus:shadow-outline" %>
       </div>
     <% end %>
-
-    <div class="mb-4">
-      <%= form.label "Titulo", class: "block text-gray-700 font-bold mb-2" %>
-      <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <div class="mb-4">
-      <%= form.label "Descrição", class: "block text-gray-700 font-bold mb-2" %>
-      <%= form.text_area :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <div class="mb-4">
-      <%= form.label :category_id, "Categoria", class: "block text-gray-700 font-bold mb-2" %>
-      <%= form.collection_select :category_id, Category.all, :id, :category, {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <div class="mb-4">
-      <%= form.label :address_id, "Endereço", class: "block text-gray-700 font-bold mb-2" %>
-      <%= form.collection_select :address_id, Address.all, :id, :street, {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <div class="flex items-center justify-between">
-      <%= form.submit "Criar Report", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" %>
-      <%= link_to "Voltar", reports_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-4 rounded-full focus:outline-none focus:shadow-outline" %>
-    </div>
-  <% end %>
+  </div>
 </div>
