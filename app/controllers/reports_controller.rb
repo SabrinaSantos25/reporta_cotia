@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show, :new, :create]
   def index
     @reports = Report.all
     #render json: @reports
